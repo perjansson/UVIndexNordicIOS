@@ -17,6 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var dateFormatter = NSDateFormatter()
     var locationManager : CLLocationManager!
+    var indicator : SDevIndicator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         dateFormatter.dateStyle = .ShortStyle
         dateFormatter.timeStyle = .ShortStyle
         
+        getTheStuff()
+    }
+    
+    func getTheStuff() {
+        indicator = SDevIndicator.generate(self.view)!
         getLocation()
     }
     
@@ -47,6 +53,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
+        indicator.dismissIndicator()
         infoLabel.text = buildInfoText(city, timeStamp: timeStamp)
         uvIndexDescriptionLabel.text = buildDescriptionForUVIndex(uvIndex)
         infoLabel.textColor = UIColor.blackColor()
@@ -99,7 +106,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        getLocation()
+        getTheStuff()
     }
 
 }
