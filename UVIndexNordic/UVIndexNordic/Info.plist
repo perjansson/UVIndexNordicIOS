@@ -7,11 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.perjansson.ios.$(PRODUCT_NAME:rfc1034identifier)</string>
-	<key>NSLocationWhenInUsageDescription</key>
-	<string>To find out which UV index forecast is closest the you</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>To find out which UV index forecast is closest the you</string>
+	<string>com.perjansson.ios.uvindex</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -26,6 +22,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>To find out which UV index forecast is closest the you</string>
+	<key>NSLocationWhenInUsageDescription</key>
+	<string>To find out which UV index forecast is closest the you</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
