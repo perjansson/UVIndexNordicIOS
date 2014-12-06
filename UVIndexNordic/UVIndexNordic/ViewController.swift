@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var uvIndexDescriptionLabel: UILabel!
     @IBOutlet weak var uvIndexLabel: UILabel!
     
+    var forecastRepository = ForecastRepository()
     var dateFormatter = NSDateFormatter()
     
     override func viewDidLoad() {
@@ -22,12 +23,11 @@ class ViewController: UIViewController {
         dateFormatter.dateStyle = .ShortStyle
         dateFormatter.timeStyle = .ShortStyle
         
-        getUIIndex()
+        getUVIndex()
     }
     
-    func getUIIndex() {
-        // TODO Get uv index for position, but until then we fake it
-        didReceiveUVIndexForLocationAndTime("2", city: "Bromma", timeStamp: NSDate())
+    func getUVIndex() {
+        forecastRepository.getUVIndex(self)
     }
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        getUIIndex()
+        getUVIndex()
     }
 
 }

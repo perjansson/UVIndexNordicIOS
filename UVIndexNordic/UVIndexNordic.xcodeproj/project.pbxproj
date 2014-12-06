@@ -13,6 +13,7 @@
 		2E0403AF1A333851006DCA68 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E0403AE1A333851006DCA68 /* Images.xcassets */; };
 		2E0403B21A333851006DCA68 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E0403B01A333851006DCA68 /* LaunchScreen.xib */; };
 		2E0403BE1A333851006DCA68 /* UVIndexNordicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0403BD1A333851006DCA68 /* UVIndexNordicTests.swift */; };
+		2E0403C81A336952006DCA68 /* ForecastRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0403C71A336952006DCA68 /* ForecastRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		2E0403B71A333851006DCA68 /* UVIndexNordicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UVIndexNordicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E0403BC1A333851006DCA68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E0403BD1A333851006DCA68 /* UVIndexNordicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVIndexNordicTests.swift; sourceTree = "<group>"; };
+		2E0403C71A336952006DCA68 /* ForecastRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				2E0403A71A333851006DCA68 /* AppDelegate.swift */,
 				2E0403A91A333851006DCA68 /* ViewController.swift */,
+				2E0403C71A336952006DCA68 /* ForecastRepository.swift */,
 				2E0403AB1A333851006DCA68 /* Main.storyboard */,
 				2E0403AE1A333851006DCA68 /* Images.xcassets */,
 				2E0403B01A333851006DCA68 /* LaunchScreen.xib */,
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E0403C81A336952006DCA68 /* ForecastRepository.swift in Sources */,
 				2E0403AA1A333851006DCA68 /* ViewController.swift in Sources */,
 				2E0403A81A333851006DCA68 /* AppDelegate.swift in Sources */,
 			);
