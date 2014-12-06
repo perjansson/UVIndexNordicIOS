@@ -41,6 +41,10 @@
                             <constraint firstAttribute="centerY" secondItem="Aam-od-6gj" secondAttribute="centerY" id="w7Y-Tw-KsV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="P0g-kl-SS7" id="mLh-zr-1Xe"/>
+                        <outlet property="uvIndexLabel" destination="Aam-od-6gj" id="THr-ir-qaw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

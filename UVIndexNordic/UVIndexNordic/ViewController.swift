@@ -10,16 +10,30 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var uvIndexLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
+    
+    var dateFormatter = NSDateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        dateFormatter.dateStyle = .ShortStyle
+        dateFormatter.timeStyle = .ShortStyle
+        
+        // TODO Get uv index for position, but until then we fake it
+        didReceiveUVIndexForLocationAndTime("5", city: "Bromma", timeStamp: NSDate())
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
+        uvIndexLabel.text = uvIndex
+        infoLabel.text = buildInfoText(city, timeStamp: timeStamp)
+        
     }
-
+    
+    func buildInfoText(city: String, timeStamp: NSDate) -> NSString {
+        return city + " " + dateFormatter.stringFromDate(timeStamp)
+    }
 
 }
 
