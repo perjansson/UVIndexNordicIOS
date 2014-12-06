@@ -28,11 +28,21 @@ class ViewController: UIViewController {
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
         uvIndexLabel.text = uvIndex
         infoLabel.text = buildInfoText(city, timeStamp: timeStamp)
-        
+        uvIndexLabel.textColor = getTextColorForUVIndex(uvIndex)
+        infoLabel.textColor = getTextColorForUVIndex(uvIndex)
+        self.view.backgroundColor = getBackgroundColorForUVIndex(uvIndex)
     }
     
     func buildInfoText(city: String, timeStamp: NSDate) -> NSString {
-        return city + " " + dateFormatter.stringFromDate(timeStamp)
+        return "UV Index in " + city + " at " + dateFormatter.stringFromDate(timeStamp)
+    }
+    
+    func getBackgroundColorForUVIndex(uvIndex: String) -> UIColor {
+        return UIColor.yellowColor()
+    }
+    
+    func getTextColorForUVIndex(uvIndex: String) -> UIColor {
+        return UIColor.blackColor()
     }
 
 }
