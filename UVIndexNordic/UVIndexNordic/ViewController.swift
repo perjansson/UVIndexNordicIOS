@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var uvIndexDescriptionLabel: UILabel!
     @IBOutlet weak var uvIndexLabel: UILabel!
     
-    var forecastRepository = ForecastRepository()
     var dateFormatter = NSDateFormatter()
     
     override func viewDidLoad() {
@@ -27,7 +26,7 @@ class ViewController: UIViewController {
     }
     
     func getUVIndex() {
-        forecastRepository.getUVIndex(self)
+        ForecastRepository(delegate: self).getUVIndex(self)
     }
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {

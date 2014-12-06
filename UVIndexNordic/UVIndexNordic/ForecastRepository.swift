@@ -10,11 +10,38 @@ import Foundation
 
 class ForecastRepository {
     
+    var delegate:ViewController
+    
+    var uvIndex:NSString
+    var city:NSString
+    
+    init(delegate:ViewController) {
+        self.delegate = delegate
+        self.uvIndex = ""
+        self.city = ""
+    }
+    
     func getUVIndex(delegate : ViewController) {
         
         
         // TODO Get uv index for position, but until then we fake it
-        delegate.didReceiveUVIndexForLocationAndTime("5", city: "Bromma", timeStamp: NSDate())
+        self.uvIndex = "6"
+        self.city = "Stockholm"
+        tryToReturnResultToDelegate()
+    }
+    
+    func tryToReturnResultToDelegate() {
+        if hasUVIndex() && hasCity() {
+            self.delegate.didReceiveUVIndexForLocationAndTime(self.uvIndex, city: self.city, timeStamp: NSDate())
+        }
+    }
+    
+    func hasUVIndex() -> Bool {
+        return self.uvIndex != ""
+    }
+    
+    func hasCity() -> Bool {
+        return self.city != ""
     }
     
 }
