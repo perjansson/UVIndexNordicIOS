@@ -27,33 +27,59 @@ class ViewController: UIViewController {
     
     func getUIIndex() {
         // TODO Get uv index for position, but until then we fake it
-        didReceiveUVIndexForLocationAndTime("5", city: "Bromma", timeStamp: NSDate())
+        didReceiveUVIndexForLocationAndTime("2", city: "Bromma", timeStamp: NSDate())
     }
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
         infoLabel.text = buildInfoText(city, timeStamp: timeStamp)
         uvIndexDescriptionLabel.text = buildDescriptionForUVIndex(uvIndex)
-        infoLabel.textColor = getTextColorForUVIndex(uvIndex)
-        uvIndexDescriptionLabel.textColor = getTextColorForUVIndex(uvIndex)
-        uvIndexLabel.textColor = getTextColorForUVIndex(uvIndex)
+        infoLabel.textColor = UIColor.blackColor()
+        uvIndexDescriptionLabel.textColor = UIColor.blackColor()
+        uvIndexLabel.textColor = UIColor.blackColor()
         uvIndexLabel.text = uvIndex
         self.view.backgroundColor = getBackgroundColorForUVIndex(uvIndex)
-    }
-    
-    func buildDescriptionForUVIndex(uvIndex: String) -> NSString {
-        return "is " + "moderate"
     }
     
     func buildInfoText(city: String, timeStamp: NSDate) -> NSString {
         return "UV Index in " + city + " at " + dateFormatter.stringFromDate(timeStamp)
     }
     
-    func getBackgroundColorForUVIndex(uvIndex: String) -> UIColor {
-        return UIColor.yellowColor()
+    func buildDescriptionForUVIndex(uvIndex: String) -> NSString {
+        return "is " + getDescriptionForUVIndex(uvIndex)
     }
     
-    func getTextColorForUVIndex(uvIndex: String) -> UIColor {
-        return UIColor.blackColor()
+    func getDescriptionForUVIndex(uvIndex: String) -> NSString {
+        switch uvIndex {
+        case "":
+            return "UNKNOWN :("
+        case "0", "1", "2":
+            return "LOW"
+        case "3", "4", "5":
+            return "MODERATE"
+        case "6", "7":
+            return "HIGH"
+        case "8", "9", "10":
+            return "VERY HIGH"
+        default:
+            return "EXTREME"
+        }
+    }
+    
+    func getBackgroundColorForUVIndex(uvIndex: String) -> UIColor {
+        switch uvIndex {
+        case "":
+            return UIColor.lightGrayColor()
+        case "0", "1", "2":
+            return UIColor.greenColor()
+        case "3", "4", "5":
+            return UIColor.yellowColor()
+        case "6", "7":
+            return UIColor.orangeColor()
+        case "8", "9", "10":
+            return UIColor.redColor()
+        default:
+            return UIColor.purpleColor()
+        }
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
