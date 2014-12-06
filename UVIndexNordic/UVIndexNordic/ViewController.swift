@@ -36,6 +36,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         uvIndexDescriptionLabel.text = ""
         uvIndexLabel.text = ""
         errorLabel.text = ""
+        self.view.backgroundColor = UIColor.whiteColor()
         
         getLocation()
     }
