@@ -30,6 +30,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func getTheStuff() {
+        if indicator != nil {
+            indicator.dismissIndicator()
+        }
         indicator = SDevIndicator.generate(self.view)!
         
         infoLabel.text = ""
