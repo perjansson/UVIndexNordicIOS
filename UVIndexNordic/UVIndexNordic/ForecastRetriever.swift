@@ -92,17 +92,28 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
         CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler:
             {(placemarks, error) in
                 if placemarks.count > 0 {
-                    let pm = placemarks[0] as CLPlacemark
-                    self.city = pm.locality
-                    self.uvIndex = closestForecast.uvIndex!
-                    self.returnResultToDelegate()
+                    let placeMark = placemarks[0] as CLPlacemark
+                    if self.isValidCountry(placeMark.ISOcountryCode) {
+                        self.city = placeMark.locality
+                        self.uvIndex = closestForecast.uvIndex!
+                    } else {
+                        self.delegate.didNotFindValidCountry(placeMark.country)
+                        return
+                    }
                 }
+                self.returnResultToDelegate()
         })
+    }
+    
+    func isValidCountry(ISOcountryCode : NSString) -> Bool {
+        return ISOcountryCode == "SE" || ISOcountryCode == "NO" || ISOcountryCode == "DK" || ISOcountryCode == "FI" || ISOcountryCode == "IS"
     }
     
     func returnResultToDelegate() {
         if hasUVIndex() && hasCity() {
             self.delegate.didReceiveUVIndexForLocationAndTime(self.uvIndex, city: self.city, timeStamp: NSDate())
+        } else {
+            self.delegate.didNotReceivedUvIndexOrCity()
         }
     }
     

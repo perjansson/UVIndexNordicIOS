@@ -14,6 +14,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var uvIndexDescriptionLabel: UILabel!
     @IBOutlet weak var uvIndexLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel!
     
     var dateFormatter = NSDateFormatter()
     var locationManager : CLLocationManager!
@@ -30,13 +31,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func getTheStuff() {
         indicator = SDevIndicator.generate(self.view)!
+        
+        infoLabel.text = ""
+        uvIndexDescriptionLabel.text = ""
+        uvIndexLabel.text = ""
+        errorLabel.text = ""
+        
         getLocation()
     }
     
     func getLocation() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -50,6 +57,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func getUVIndex(currentLocation : CLLocation) {
         ForecastRetriever(delegate: self).getUVIndex(currentLocation, delegate: self)
+    }
+    
+    func didNotFindValidCountry(country : NSString) {
+        indicator.dismissIndicator()
+        
+        errorLabel.text = "Oh no :( This app cannot find UV Index outside the Nordic countries, and you are in " + country + "."
+    }
+    
+    func didNotReceivedUvIndexOrCity() {
+        indicator.dismissIndicator()
+        
+        errorLabel.text = "Oh no :( Could for some reason not find any UV Index for your location. Make sure you have internet access, that this app has access to your location and then touch anywhere on the screen to try again."
     }
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
@@ -93,15 +112,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         case "":
             return UIColor.lightGrayColor()
         case "0", "1", "2":
-            return UIColor.greenColor()
+            return UIColor(red: 0.459, green: 0.757, blue: 0.282, alpha: 1.0)
         case "3", "4", "5":
-            return UIColor.yellowColor()
+            return UIColor(red: 0.918, green: 0.925, blue: 0.4, alpha: 1.0)
         case "6", "7":
-            return UIColor.orangeColor()
+            return UIColor(red: 0.886, green: 0.455, blue: 0.184, alpha: 1.0)
         case "8", "9", "10":
-            return UIColor.redColor()
+            return UIColor(red: 0.886, green: 0.204, blue: 0.184, alpha: 1.0)
         default:
-            return UIColor.purpleColor()
+            return UIColor(red: 0.6, green: 0.125, blue: 0.561, alpha: 1.0)
         }
     }
     

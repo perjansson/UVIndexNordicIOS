@@ -37,18 +37,31 @@
                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dj1-dJ-iBI">
+                                <rect key="frame" x="150" y="175" width="300" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="Lwz-zO-Ic6"/>
+                                    <constraint firstAttribute="width" constant="300" id="N4G-fq-HNr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Dj1-dJ-iBI" secondAttribute="centerX" id="09y-3V-wP5"/>
                             <constraint firstAttribute="centerX" secondItem="Aam-od-6gj" secondAttribute="centerX" id="I1R-RX-1Th"/>
                             <constraint firstItem="P0g-kl-SS7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="LgO-X5-u7q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="P0g-kl-SS7" secondAttribute="trailing" constant="10" id="Y9h-yK-fby"/>
+                            <constraint firstAttribute="centerY" secondItem="Dj1-dJ-iBI" secondAttribute="centerY" id="ebE-Nu-QgP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jBj-Mc-oXd" secondAttribute="trailing" constant="10" id="hzS-bo-1tB"/>
                             <constraint firstItem="jBj-Mc-oXd" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="55" id="id7-BC-uz9"/>
                             <constraint firstAttribute="centerY" secondItem="Aam-od-6gj" secondAttribute="centerY" id="w7Y-Tw-KsV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="Dj1-dJ-iBI" id="KSS-tf-oij"/>
                         <outlet property="infoLabel" destination="P0g-kl-SS7" id="mLh-zr-1Xe"/>
                         <outlet property="uvIndexDescriptionLabel" destination="jBj-Mc-oXd" id="7WL-Yq-TTh"/>
                         <outlet property="uvIndexLabel" destination="Aam-od-6gj" id="THr-ir-qaw"/>
