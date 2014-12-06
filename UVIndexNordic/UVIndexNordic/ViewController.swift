@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     }
     
     func getUVIndex() {
-        ForecastRepository(delegate: self).getUVIndex(self)
+        ForecastRetriever(delegate: self).getUVIndex(self)
     }
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
