@@ -13,11 +13,12 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     
     let FORECAST_PROVIDER_URL = "http://api.yr.no/weatherapi/uvforecast/1.0/?time=%@T12:00:00Z;content_type=text/xml"
     
+    var locationManager : CLLocationManager!
     let dateFormatter = NSDateFormatter()
     
     var delegate : ViewController
     
-    var currentLocation : CLLocation? = CLLocation(latitude: CLLocationDegrees("59.3311630".doubleValue), longitude: CLLocationDegrees("17.9089110".doubleValue))
+    var currentLocation : CLLocation?
     var forecasts : [Forecast] = []
     var currentParsingForecast : Forecast?
     
@@ -25,14 +26,17 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     var city : NSString
     
     init(delegate:ViewController) {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
         self.delegate = delegate
         self.uvIndex = ""
         self.city = ""
         
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        super.init()
     }
     
-    func getUVIndex(delegate : ViewController) {
+    func getUVIndex(currentLocation : CLLocation, delegate : ViewController) {
+        self.currentLocation = currentLocation
         var url = NSURL(string : String(format: FORECAST_PROVIDER_URL, dateFormatter.stringFromDate(NSDate())))
         var xmlParser = NSXMLParser(contentsOfURL: url)
         xmlParser?.delegate = self

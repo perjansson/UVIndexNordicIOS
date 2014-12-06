@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var uvIndexDescriptionLabel: UILabel!
     @IBOutlet weak var uvIndexLabel: UILabel!
     
     var dateFormatter = NSDateFormatter()
+    var locationManager : CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,11 +24,26 @@ class ViewController: UIViewController {
         dateFormatter.dateStyle = .ShortStyle
         dateFormatter.timeStyle = .ShortStyle
         
-        getUVIndex()
+        getLocation()
     }
     
-    func getUVIndex() {
-        ForecastRetriever(delegate: self).getUVIndex(self)
+    func getLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
+        locationManager.stopUpdatingLocation()
+        var locationArray = locations as NSArray
+        var currentLocation = locationArray.lastObject as? CLLocation
+        getUVIndex(currentLocation!)
+    }
+    
+    func getUVIndex(currentLocation : CLLocation) {
+        ForecastRetriever(delegate: self).getUVIndex(currentLocation, delegate: self)
     }
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
@@ -82,7 +99,7 @@ class ViewController: UIViewController {
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        getUVIndex()
+        getLocation()
     }
 
 }
