@@ -9,9 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var uvIndexLabel: UILabel!
+    
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var uvIndexDescriptionLabel: UILabel!
+    @IBOutlet weak var uvIndexLabel: UILabel!
     
     var dateFormatter = NSDateFormatter()
     
@@ -26,11 +27,17 @@ class ViewController: UIViewController {
     }
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
-        uvIndexLabel.text = uvIndex
         infoLabel.text = buildInfoText(city, timeStamp: timeStamp)
-        uvIndexLabel.textColor = getTextColorForUVIndex(uvIndex)
+        uvIndexDescriptionLabel.text = buildDescriptionForUVIndex(uvIndex)
         infoLabel.textColor = getTextColorForUVIndex(uvIndex)
+        uvIndexDescriptionLabel.textColor = getTextColorForUVIndex(uvIndex)
+        uvIndexLabel.textColor = getTextColorForUVIndex(uvIndex)
+        uvIndexLabel.text = uvIndex
         self.view.backgroundColor = getBackgroundColorForUVIndex(uvIndex)
+    }
+    
+    func buildDescriptionForUVIndex(uvIndex: String) -> NSString {
+        return "is " + "moderate"
     }
     
     func buildInfoText(city: String, timeStamp: NSDate) -> NSString {
