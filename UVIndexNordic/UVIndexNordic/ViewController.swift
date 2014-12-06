@@ -22,6 +22,10 @@ class ViewController: UIViewController {
         dateFormatter.dateStyle = .ShortStyle
         dateFormatter.timeStyle = .ShortStyle
         
+        getUIIndex()
+    }
+    
+    func getUIIndex() {
         // TODO Get uv index for position, but until then we fake it
         didReceiveUVIndexForLocationAndTime("5", city: "Bromma", timeStamp: NSDate())
     }
@@ -50,6 +54,10 @@ class ViewController: UIViewController {
     
     func getTextColorForUVIndex(uvIndex: String) -> UIColor {
         return UIColor.blackColor()
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        getUIIndex()
     }
 
 }
