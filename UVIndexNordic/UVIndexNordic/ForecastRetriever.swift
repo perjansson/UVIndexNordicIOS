@@ -43,21 +43,19 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
         xmlParser?.parse()
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
         switch elementName {
         case "location" :
-            currentParsingForecast = Forecast()
-            currentParsingForecast?.latitude = attributeDict["latitude"] as? NSString
-            currentParsingForecast?.longitude = attributeDict["longitude"] as? NSString
+            currentParsingForecast = Forecast(longitude: (attributeDict["longitude"] as? NSString)!.doubleValue, latitude: (attributeDict["latitude"] as? NSString)!.doubleValue)
         case "uvi_forecast" :
-            currentParsingForecast?.uvIndex = String(Int(round((attributeDict["value"] as NSString).floatValue)))
+            currentParsingForecast?.uvIndex = String(Int(round((attributeDict["value"] as! NSString).floatValue)))
             forecasts.append(currentParsingForecast!)
         default :
             break
         }
     }
     
-    func parserDidEndDocument(parser: NSXMLParser!) {
+    func parserDidEndDocument(parser: NSXMLParser) {
         findClosestForecast()
     }
     
@@ -75,8 +73,8 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     }
     
     func getClosestForecastToLocation(currentLocation : CLLocation, forecast1 : Forecast, forecast2 : Forecast) -> Forecast {
-        var location1 : CLLocation = CLLocation(latitude: CLLocationDegrees(forecast1.latitude!.doubleValue), longitude: CLLocationDegrees(forecast1.longitude!.doubleValue))
-        var location2 : CLLocation = CLLocation(latitude: CLLocationDegrees(forecast2.latitude!.doubleValue), longitude: CLLocationDegrees(forecast2.longitude!.doubleValue))
+        var location1 : CLLocation = CLLocation(latitude: CLLocationDegrees(forecast1.latitude!), longitude: CLLocationDegrees(forecast1.longitude!))
+        var location2 : CLLocation = CLLocation(latitude: CLLocationDegrees(forecast2.latitude!), longitude: CLLocationDegrees(forecast2.longitude!))
         
         var meters1 : CLLocationDistance = location1.distanceFromLocation(currentLocation)
         var meters2 : CLLocationDistance = location2.distanceFromLocation(currentLocation)
@@ -92,7 +90,7 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
         CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler:
             {(placemarks, error) in
                 if placemarks.count > 0 {
-                    let placeMark = placemarks[0] as CLPlacemark
+                    let placeMark = placemarks[0] as! CLPlacemark
                     if self.isValidCountry(placeMark.ISOcountryCode) {
                         self.city = placeMark.locality
                         self.uvIndex = closestForecast.uvIndex!
@@ -111,7 +109,7 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     
     func returnResultToDelegate() {
         if hasUVIndex() && hasCity() {
-            self.delegate.didReceiveUVIndexForLocationAndTime(self.uvIndex, city: self.city, timeStamp: NSDate())
+            self.delegate.didReceiveUVIndexForLocationAndTime(self.uvIndex as String, city: self.city as String, timeStamp: NSDate())
         } else {
             self.delegate.didNotReceivedUvIndexOrCity()
         }

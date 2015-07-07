@@ -66,7 +66,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func didNotFindValidCountry(country : NSString) {
         indicator.dismissIndicator()
         
-        errorLabel.text = "Oh no :( This app cannot find UV Index outside the Nordic countries, and you are in " + country + "."
+        errorLabel.text = "Oh no :( This app cannot find UV Index outside the Nordic countries, and you are in " + (country as String) + "."
     }
     
     func didNotReceivedUvIndexOrCity() {
@@ -77,8 +77,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
         indicator.dismissIndicator()
-        infoLabel.text = buildInfoText(city, timeStamp: timeStamp)
-        uvIndexDescriptionLabel.text = buildDescriptionForUVIndex(uvIndex)
+        infoLabel.text = buildInfoText(city, timeStamp: timeStamp) as String
+        uvIndexDescriptionLabel.text = buildDescriptionForUVIndex(uvIndex) as String
         infoLabel.textColor = UIColor.blackColor()
         uvIndexDescriptionLabel.textColor = UIColor.blackColor()
         uvIndexLabel.textColor = UIColor.blackColor()
@@ -91,7 +91,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func buildDescriptionForUVIndex(uvIndex: String) -> NSString {
-        return "is " + getDescriptionForUVIndex(uvIndex)
+        return "is " + (getDescriptionForUVIndex(uvIndex) as String)
     }
     
     func getDescriptionForUVIndex(uvIndex: String) -> NSString {
@@ -128,7 +128,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         getTheStuff()
     }
 

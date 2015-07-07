@@ -10,11 +10,22 @@ import Foundation
 
 class Forecast {
     
-    var longitude: NSString?
-    var latitude: NSString?
-    var uvIndex: NSString?
+    var city: String?
+    var state: String?
+    var uvIndex: String?
+    var longitude: Double?
+    var latitude: Double?
     
-    init() {
+    init (longitude : Double, latitude : Double) {
+        self.longitude = longitude
+        self.latitude = latitude
+    }
+    
+    
+    init(city : String, state : String, uvIndex : String) {
+        self.city = city
+        self.state = state
+        self.uvIndex = uvIndex
     }
     
 }
