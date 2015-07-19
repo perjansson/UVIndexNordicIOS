@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Glance - UV Index WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Notification - UV Index WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>UV Index WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>UVIndexNordic.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>2E0403B61A333851006DCA68</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2ED1DC3D1B5BAE72006B5515</key>
 		<dict>
 			<key>primary</key>
 			<true/>

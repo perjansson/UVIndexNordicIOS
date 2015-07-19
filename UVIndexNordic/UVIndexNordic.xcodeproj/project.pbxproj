@@ -17,6 +17,14 @@
 		2E0403CC1A3377CD006DCA68 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0403CB1A3377CD006DCA68 /* Forecast.swift */; };
 		2E0403CE1A33A1D7006DCA68 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0403CD1A33A1D7006DCA68 /* CoreLocation.framework */; };
 		2E7DF4F81A33A98F002EEAAE /* SDevIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DF4F71A33A98F002EEAAE /* SDevIndicator.swift */; };
+		2ED1DC351B5BAE72006B5515 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1DC341B5BAE72006B5515 /* InterfaceController.swift */; };
+		2ED1DC371B5BAE72006B5515 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1DC361B5BAE72006B5515 /* NotificationController.swift */; };
+		2ED1DC391B5BAE72006B5515 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1DC381B5BAE72006B5515 /* GlanceController.swift */; };
+		2ED1DC3B1B5BAE72006B5515 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ED1DC3A1B5BAE72006B5515 /* Images.xcassets */; };
+		2ED1DC3F1B5BAE72006B5515 /* UV Index WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 2ED1DC3E1B5BAE72006B5515 /* UV Index WatchKit App.app */; };
+		2ED1DC471B5BAE72006B5515 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ED1DC451B5BAE72006B5515 /* Interface.storyboard */; };
+		2ED1DC491B5BAE72006B5515 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ED1DC481B5BAE72006B5515 /* Images.xcassets */; };
+		2ED1DC4C1B5BAE72006B5515 /* UV Index WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2ED1DC2F1B5BAE72006B5515 /* UV Index WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,7 +35,35 @@
 			remoteGlobalIDString = 2E0403A11A333851006DCA68;
 			remoteInfo = UVIndexNordic;
 		};
+		2ED1DC401B5BAE72006B5515 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E04039A1A333851006DCA68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2ED1DC3D1B5BAE72006B5515;
+			remoteInfo = "UV Index WatchKit App";
+		};
+		2ED1DC4A1B5BAE72006B5515 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E04039A1A333851006DCA68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2ED1DC2E1B5BAE72006B5515;
+			remoteInfo = "UV Index WatchKit Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2ED1DC531B5BAE72006B5515 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2ED1DC4C1B5BAE72006B5515 /* UV Index WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2E0403A21A333851006DCA68 /* UVIndexNordic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UVIndexNordic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +80,17 @@
 		2E0403CB1A3377CD006DCA68 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		2E0403CD1A33A1D7006DCA68 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2E7DF4F71A33A98F002EEAAE /* SDevIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDevIndicator.swift; sourceTree = "<group>"; };
+		2ED1DC2F1B5BAE72006B5515 /* UV Index WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "UV Index WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ED1DC321B5BAE72006B5515 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ED1DC331B5BAE72006B5515 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		2ED1DC341B5BAE72006B5515 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		2ED1DC361B5BAE72006B5515 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		2ED1DC381B5BAE72006B5515 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		2ED1DC3A1B5BAE72006B5515 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2ED1DC3E1B5BAE72006B5515 /* UV Index WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Index WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ED1DC441B5BAE72006B5515 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ED1DC461B5BAE72006B5515 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		2ED1DC481B5BAE72006B5515 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +109,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2ED1DC2C1B5BAE72006B5515 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -71,6 +125,8 @@
 				2E0403CD1A33A1D7006DCA68 /* CoreLocation.framework */,
 				2E0403A41A333851006DCA68 /* UVIndexNordic */,
 				2E0403BA1A333851006DCA68 /* UVIndexNordicTests */,
+				2ED1DC301B5BAE72006B5515 /* UV Index WatchKit Extension */,
+				2ED1DC421B5BAE72006B5515 /* UV Index WatchKit App */,
 				2E0403A31A333851006DCA68 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,6 +136,8 @@
 			children = (
 				2E0403A21A333851006DCA68 /* UVIndexNordic.app */,
 				2E0403B71A333851006DCA68 /* UVIndexNordicTests.xctest */,
+				2ED1DC2F1B5BAE72006B5515 /* UV Index WatchKit Extension.appex */,
+				2ED1DC3E1B5BAE72006B5515 /* UV Index WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +183,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2ED1DC301B5BAE72006B5515 /* UV Index WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2ED1DC341B5BAE72006B5515 /* InterfaceController.swift */,
+				2ED1DC361B5BAE72006B5515 /* NotificationController.swift */,
+				2ED1DC381B5BAE72006B5515 /* GlanceController.swift */,
+				2ED1DC3A1B5BAE72006B5515 /* Images.xcassets */,
+				2ED1DC311B5BAE72006B5515 /* Supporting Files */,
+			);
+			path = "UV Index WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		2ED1DC311B5BAE72006B5515 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2ED1DC321B5BAE72006B5515 /* Info.plist */,
+				2ED1DC331B5BAE72006B5515 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2ED1DC421B5BAE72006B5515 /* UV Index WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				2ED1DC451B5BAE72006B5515 /* Interface.storyboard */,
+				2ED1DC481B5BAE72006B5515 /* Images.xcassets */,
+				2ED1DC431B5BAE72006B5515 /* Supporting Files */,
+			);
+			path = "UV Index WatchKit App";
+			sourceTree = "<group>";
+		};
+		2ED1DC431B5BAE72006B5515 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2ED1DC441B5BAE72006B5515 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,10 +232,12 @@
 				2E04039E1A333851006DCA68 /* Sources */,
 				2E04039F1A333851006DCA68 /* Frameworks */,
 				2E0403A01A333851006DCA68 /* Resources */,
+				2ED1DC531B5BAE72006B5515 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2ED1DC4B1B5BAE72006B5515 /* PBXTargetDependency */,
 			);
 			name = UVIndexNordic;
 			productName = UVIndexNordic;
@@ -163,6 +262,39 @@
 			productReference = 2E0403B71A333851006DCA68 /* UVIndexNordicTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		2ED1DC2E1B5BAE72006B5515 /* UV Index WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2ED1DC501B5BAE72006B5515 /* Build configuration list for PBXNativeTarget "UV Index WatchKit Extension" */;
+			buildPhases = (
+				2ED1DC2B1B5BAE72006B5515 /* Sources */,
+				2ED1DC2C1B5BAE72006B5515 /* Frameworks */,
+				2ED1DC2D1B5BAE72006B5515 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2ED1DC411B5BAE72006B5515 /* PBXTargetDependency */,
+			);
+			name = "UV Index WatchKit Extension";
+			productName = "UV Index WatchKit Extension";
+			productReference = 2ED1DC2F1B5BAE72006B5515 /* UV Index WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		2ED1DC3D1B5BAE72006B5515 /* UV Index WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2ED1DC4D1B5BAE72006B5515 /* Build configuration list for PBXNativeTarget "UV Index WatchKit App" */;
+			buildPhases = (
+				2ED1DC3C1B5BAE72006B5515 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UV Index WatchKit App";
+			productName = "UV Index WatchKit App";
+			productReference = 2ED1DC3E1B5BAE72006B5515 /* UV Index WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -179,6 +311,13 @@
 					2E0403B61A333851006DCA68 = {
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = 2E0403A11A333851006DCA68;
+					};
+					2ED1DC2E1B5BAE72006B5515 = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = RC88D2HS3Y;
+					};
+					2ED1DC3D1B5BAE72006B5515 = {
+						CreatedOnToolsVersion = 6.4;
 					};
 				};
 			};
@@ -197,6 +336,8 @@
 			targets = (
 				2E0403A11A333851006DCA68 /* UVIndexNordic */,
 				2E0403B61A333851006DCA68 /* UVIndexNordicTests */,
+				2ED1DC2E1B5BAE72006B5515 /* UV Index WatchKit Extension */,
+				2ED1DC3D1B5BAE72006B5515 /* UV Index WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -216,6 +357,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2ED1DC2D1B5BAE72006B5515 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ED1DC3B1B5BAE72006B5515 /* Images.xcassets in Resources */,
+				2ED1DC3F1B5BAE72006B5515 /* UV Index WatchKit App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2ED1DC3C1B5BAE72006B5515 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ED1DC471B5BAE72006B5515 /* Interface.storyboard in Resources */,
+				2ED1DC491B5BAE72006B5515 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +401,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2ED1DC2B1B5BAE72006B5515 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ED1DC371B5BAE72006B5515 /* NotificationController.swift in Sources */,
+				2ED1DC351B5BAE72006B5515 /* InterfaceController.swift in Sources */,
+				2ED1DC391B5BAE72006B5515 /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -249,6 +418,16 @@
 			isa = PBXTargetDependency;
 			target = 2E0403A11A333851006DCA68 /* UVIndexNordic */;
 			targetProxy = 2E0403B81A333851006DCA68 /* PBXContainerItemProxy */;
+		};
+		2ED1DC411B5BAE72006B5515 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2ED1DC3D1B5BAE72006B5515 /* UV Index WatchKit App */;
+			targetProxy = 2ED1DC401B5BAE72006B5515 /* PBXContainerItemProxy */;
+		};
+		2ED1DC4B1B5BAE72006B5515 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2ED1DC2E1B5BAE72006B5515 /* UV Index WatchKit Extension */;
+			targetProxy = 2ED1DC4A1B5BAE72006B5515 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -267,6 +446,14 @@
 				2E0403B11A333851006DCA68 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		2ED1DC451B5BAE72006B5515 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ED1DC461B5BAE72006B5515 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -355,7 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UVIndexNordic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -369,7 +556,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = UVIndexNordic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -411,6 +598,76 @@
 			};
 			name = Release;
 		};
+		2ED1DC4E1B5BAE72006B5515 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = UV_Index_WatchKit_Extension;
+				INFOPLIST_FILE = "UV Index WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		2ED1DC4F1B5BAE72006B5515 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = UV_Index_WatchKit_Extension;
+				INFOPLIST_FILE = "UV Index WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		2ED1DC511B5BAE72006B5515 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "UV Index WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2ED1DC521B5BAE72006B5515 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "UV Index WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -437,6 +694,24 @@
 			buildConfigurations = (
 				2E0403C51A333851006DCA68 /* Debug */,
 				2E0403C61A333851006DCA68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2ED1DC4D1B5BAE72006B5515 /* Build configuration list for PBXNativeTarget "UV Index WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ED1DC4E1B5BAE72006B5515 /* Debug */,
+				2ED1DC4F1B5BAE72006B5515 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2ED1DC501B5BAE72006B5515 /* Build configuration list for PBXNativeTarget "UV Index WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ED1DC511B5BAE72006B5515 /* Debug */,
+				2ED1DC521B5BAE72006B5515 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
