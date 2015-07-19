@@ -12,6 +12,10 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
+    @IBOutlet weak var cityLabel: WKInterfaceLabel!
+    @IBOutlet weak var uvIndexDescriptionLabel: WKInterfaceLabel!
+    @IBOutlet weak var uvIndexLabel: WKInterfaceLabel!
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         

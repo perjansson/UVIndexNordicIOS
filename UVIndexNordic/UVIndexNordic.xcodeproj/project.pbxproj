@@ -149,11 +149,11 @@
 				2E0403A91A333851006DCA68 /* ViewController.swift */,
 				2E0403C71A336952006DCA68 /* ForecastRetriever.swift */,
 				2E7DF4F71A33A98F002EEAAE /* SDevIndicator.swift */,
+				2E0403CB1A3377CD006DCA68 /* Forecast.swift */,
 				2E0403AB1A333851006DCA68 /* Main.storyboard */,
 				2E0403AE1A333851006DCA68 /* Images.xcassets */,
 				2E0403B01A333851006DCA68 /* LaunchScreen.xib */,
 				2E0403A51A333851006DCA68 /* Supporting Files */,
-				2E0403CB1A3377CD006DCA68 /* Forecast.swift */,
 			);
 			path = UVIndexNordic;
 			sourceTree = "<group>";
