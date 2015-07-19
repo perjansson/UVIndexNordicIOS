@@ -10,10 +10,16 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="UV_Index_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <label height="20" alignment="center" text="Stockholm" textAlignment="left" id="yPL-W3-nRc"/>
-                        <label alignment="center" text="Moderate" textAlignment="left" id="k2a-TT-WNK"/>
+                        <label height="20" alignment="center" text="City" textAlignment="left" id="yPL-W3-nRc">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label alignment="center" text="Description" textAlignment="left" id="k2a-TT-WNK">
+                            <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                        </label>
                         <separator alignment="left" id="05F-cW-u53"/>
-                        <label alignment="center" verticalAlignment="center" text="4" textAlignment="center" id="o20-X9-IY5"/>
+                        <label alignment="center" verticalAlignment="center" text="4" textAlignment="center" id="o20-X9-IY5">
+                            <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                        </label>
                     </items>
                     <connections>
                         <outlet property="cityLabel" destination="yPL-W3-nRc" id="7ai-1S-0eX"/>

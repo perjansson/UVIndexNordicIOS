@@ -20,6 +20,7 @@ class InterfaceController: WKInterfaceController {
         super.awakeWithContext(context)
         
         // Configure interface objects here.
+        self.requestUVIndexFromPhone()
     }
 
     override func willActivate() {
@@ -30,6 +31,27 @@ class InterfaceController: WKInterfaceController {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    func requestUVIndexFromPhone() {
+        WKInterfaceController.openParentApplication(Dictionary<String, String>()) {
+            (replyInfo, error) -> Void in
+            
+            if (error == nil) {
+                var dictionary = replyInfo as NSDictionary
+                let city = dictionary["city"] as! String
+                let uvIndexDescription = dictionary["uvIndexDescription"] as! String
+                let uvIndex = dictionary["uvIndex"] as! String
+                
+                self.cityLabel.setText(city)
+                self.uvIndexDescriptionLabel.setText(uvIndexDescription)
+                self.uvIndexLabel.setText(uvIndex)
+                
+            } else {
+                // TODO: Show error
+            }
+
+        }
     }
 
 }

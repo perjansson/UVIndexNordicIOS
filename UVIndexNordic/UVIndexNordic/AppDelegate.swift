@@ -40,6 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+        var uvIndexDictionary = Dictionary<String, String>()
+        
+        // TODO: Use controller or forecastretriever to get uvindex
+        uvIndexDictionary["city"] = "Stockholm"
+        uvIndexDictionary["uvIndexDescription"] = "High"
+        uvIndexDictionary["uvIndex"] = "8"
+        reply(uvIndexDictionary)
+    }
 
 
 }
