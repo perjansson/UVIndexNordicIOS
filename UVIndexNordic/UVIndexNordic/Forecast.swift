@@ -19,8 +19,7 @@ class Forecast {
     init (longitude : Double, latitude : Double) {
         self.longitude = longitude
         self.latitude = latitude
-    }
-    
+    }    
     
     init(city : String, state : String, uvIndex : String) {
         self.city = city

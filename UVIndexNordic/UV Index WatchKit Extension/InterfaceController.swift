@@ -33,11 +33,16 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
+    @IBAction func refreshUvIndexAction() {
+        self.requestUVIndexFromPhone()
+    }
+    
     func requestUVIndexFromPhone() {
         WKInterfaceController.openParentApplication(Dictionary<String, String>()) {
             (replyInfo, error) -> Void in
             
-            if (error == nil) {
+            if error == nil {
+                println("### requestUVIndexFromPhone \(replyInfo)")
                 var dictionary = replyInfo as NSDictionary
                 let city = dictionary["city"] as! String
                 let uvIndexDescription = dictionary["uvIndexDescription"] as! String
@@ -49,6 +54,7 @@ class InterfaceController: WKInterfaceController {
                 
             } else {
                 // TODO: Show error
+                println("### Error: \(error)")
             }
 
         }

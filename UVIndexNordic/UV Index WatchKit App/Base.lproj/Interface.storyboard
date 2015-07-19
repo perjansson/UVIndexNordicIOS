@@ -21,6 +21,15 @@
                             <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
                         </label>
                     </items>
+                    <menu key="menu" id="KLJ-cg-wY0">
+                        <items>
+                            <menuItem title="Refresh" icon="repeat" id="mcb-nl-rbf">
+                                <connections>
+                                    <action selector="refreshUvIndexAction" destination="AgC-eL-Hgc" id="0pe-OM-rgK"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="cityLabel" destination="yPL-W3-nRc" id="7ai-1S-0eX"/>
                         <outlet property="uvIndexDescriptionLabel" destination="k2a-TT-WNK" id="1Fj-7l-8uq"/>

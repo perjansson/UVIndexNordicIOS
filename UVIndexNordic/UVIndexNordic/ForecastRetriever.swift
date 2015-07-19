@@ -16,14 +16,18 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     var locationManager : CLLocationManager!
     let dateFormatter = NSDateFormatter()
     
-    var delegate : ViewController
+    var delegate : ViewController?
     
     var currentLocation : CLLocation?
     var forecasts : [Forecast] = []
     var currentParsingForecast : Forecast?
     
-    var uvIndex : NSString
-    var city : NSString
+    var uvIndex : NSString?
+    var city : NSString?
+    
+    override init() {
+        super.init()
+    }
     
     init(delegate:ViewController) {
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -33,6 +37,14 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
         self.city = ""
         
         super.init()
+    }
+    
+    func getUVIndexAndReplyToWatchKitExtension() -> NSDictionary {
+        var uvIndexDictionary = Dictionary<String, String>()
+        uvIndexDictionary["city"] = "Rauma"
+        uvIndexDictionary["uvIndexDescription"] = "High"
+        uvIndexDictionary["uvIndex"] = "8"
+        return uvIndexDictionary
     }
     
     func getUVIndex(currentLocation : CLLocation, delegate : ViewController) {
@@ -95,7 +107,7 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
                         self.city = placeMark.locality
                         self.uvIndex = closestForecast.uvIndex!
                     } else {
-                        self.delegate.didNotFindValidCountry(placeMark.country)
+                        self.delegate!.didNotFindValidCountry(placeMark.country)
                         return
                     }
                 }
@@ -109,9 +121,9 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     
     func returnResultToDelegate() {
         if hasUVIndex() && hasCity() {
-            self.delegate.didReceiveUVIndexForLocationAndTime(self.uvIndex as String, city: self.city as String, timeStamp: NSDate())
+            self.delegate!.didReceiveUVIndexForLocationAndTime(self.uvIndex! as String, city: self.city! as String, timeStamp: NSDate())
         } else {
-            self.delegate.didNotReceivedUvIndexOrCity()
+            self.delegate!.didNotReceivedUvIndexOrCity()
         }
     }
     

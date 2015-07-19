@@ -29,6 +29,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         getTheStuff()
     }
     
+    func getTheStuffForWatchKitExtension() -> NSDictionary {
+        var uvIndexDictionary = Dictionary<String, String>()
+        uvIndexDictionary["city"] = "Karlstad"
+        uvIndexDictionary["uvIndexDescription"] = "High"
+        uvIndexDictionary["uvIndex"] = "8"
+        return uvIndexDictionary
+    }
+    
     func getTheStuff() {
         if indicator != nil {
             indicator.dismissIndicator()

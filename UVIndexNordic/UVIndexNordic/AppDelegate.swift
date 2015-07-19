@@ -42,15 +42,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
-        var uvIndexDictionary = Dictionary<String, String>()
+        println("### handleWatchKitExtensionRequest 2")
         
-        // TODO: Use controller or forecastretriever to get uvindex
-        uvIndexDictionary["city"] = "Stockholm"
-        uvIndexDictionary["uvIndexDescription"] = "High"
-        uvIndexDictionary["uvIndex"] = "8"
-        reply(uvIndexDictionary)
+        let backgroundTaskIdentifier =
+        application.beginBackgroundTaskWithName("watchKitExtensionRequest",
+                expirationHandler: { () -> Void in reply([:])
+            })
+        
+        var uvIndexDictionary = ViewController().getTheStuffForWatchKitExtension()
+        //var uvIndexDictionary = ForecastRetriever().getUVIndexAndReplyToWatchKitExtension()
+        
+        reply(uvIndexDictionary as [NSObject : AnyObject])
+        
+        application.endBackgroundTask(backgroundTaskIdentifier)
     }
-
 
 }
 
