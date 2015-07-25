@@ -74,7 +74,7 @@ class InterfaceController: WKInterfaceController {
     
     func showError(error : AnyObject) {
         var font = UIFont.systemFontOfSize(6)
-        self.errorMessageLabel.setAttributedText(NSAttributedString(string: "\(error)" as String, attributes: [NSFontAttributeName:font]))
+        self.errorMessageLabel.setAttributedText(NSAttributedString(string: "\(error)\n\n Make sure you have internet access, that this app has access to your location and then press hard anywhere on the screen to try again." as String, attributes: [NSFontAttributeName:font]))
         self.uxIndexGroup.setHidden(true)
         self.errorMessageLabel.setHidden(false)    }
 

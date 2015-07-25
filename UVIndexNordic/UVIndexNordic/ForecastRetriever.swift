@@ -111,7 +111,7 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
                     } else {
                         if self.handler != nil {
                             var userInfo = Dictionary<String, String>()
-                            userInfo[NSLocalizedDescriptionKey] = "Oh no :( This app cannot find UV Index outside the Nordic countries, and you are in \(placeMark.country)"
+                            userInfo[NSLocalizedDescriptionKey] = "Oh no :( This app cannot find UV Index outside the Nordic countries, and you are in \(placeMark.country). If you feel this is wrong make sure you have internet access, that this app has access to your location and then press hard anywhere on the screen to try again."
                             var error = NSError(domain: "forecast_retriever", code: 1, userInfo: userInfo)
                             self.handler!(uvIndex: nil, error: error)
                         }
@@ -140,7 +140,7 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
         } else {
             if self.handler != nil {
                 var userInfo = Dictionary<String, String>()
-                userInfo[NSLocalizedDescriptionKey] = "Oh no :( Could for some reason not find any UV Index for your location. Make sure you have internet access, that this app has access to your location and then touch anywhere on the screen to try again."
+                userInfo[NSLocalizedDescriptionKey] = "Oh no :( Could for some reason not find any UV Index for your location. Make sure you have internet access, that this app has access to your location and then press hard anywhere on the screen to try again."
                 var error = NSError(domain: "forecast_retriever", code: 1, userInfo: userInfo)
                 self.handler!(uvIndex: nil, error: error)
             }

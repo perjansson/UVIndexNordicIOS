@@ -43,19 +43,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
-        println("### handleWatchKitExtensionRequest 2")
+        println("### handleWatchKitExtensionRequest")
         
-        // TODO: Return error message to reply
-        let backgroundTaskIdentifier =
-        application.beginBackgroundTaskWithName("watchKitExtensionRequest", expirationHandler: {
-            () -> Void in reply([:])
+        var uvIndexDictionary = Dictionary<String, String>()
+        
+        let backgroundTaskIdentifier = application.beginBackgroundTaskWithName("watchKitExtensionRequest", expirationHandler: { () -> Void in
+            uvIndexDictionary["error"] = "Oh no! The app timed out while getting the latest uv index."
+            reply([:])
         })
         
         var locationManager = CLLocationManager()
         var location = locationManager.location
-        //ForecastRetriever(reply: reply).getUVIndex(location)
         var forecastRetriever = ForecastRetriever() { (uvIndex : UvIndex?, error : NSError?) in
-            var uvIndexDictionary = Dictionary<String, String>()
             if uvIndex != nil {
                 uvIndexDictionary["city"] = uvIndex!.city
                 uvIndexDictionary["uvIndex"] = uvIndex!.uvIndex
@@ -66,12 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 uvIndexDictionary["error"] = error!.localizedDescription
             }
             reply!(uvIndexDictionary as [NSObject : AnyObject])
+            application.endBackgroundTask(backgroundTaskIdentifier)
         }
+        
         forecastRetriever.getUVIndex(location)
-        
-        // TODO: Return error message to reply if location or uv index could not be found
-        
-        application.endBackgroundTask(backgroundTaskIdentifier)
     }
 
 }
