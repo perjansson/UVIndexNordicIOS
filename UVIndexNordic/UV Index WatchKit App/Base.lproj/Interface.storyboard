@@ -10,14 +10,32 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="UV_Index_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <label alignment="center" text="Error message" textAlignment="left" numberOfLines="20" id="IcJ-WG-sdT"/>
-                        <label alignment="center" text="Description" textAlignment="left" numberOfLines="3" id="k2a-TT-WNK">
-                            <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                        <label alignment="center" text="Error message" textAlignment="left" numberOfLines="20" id="IcJ-WG-sdT">
+                            <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="10"/>
+                            <variation key="device=watch38mm">
+                                <fontDescription key="font" type="system" pointSize="8"/>
+                            </variation>
                         </label>
-                        <separator alignment="left" id="05F-cW-u53"/>
-                        <label alignment="center" verticalAlignment="center" text="4" textAlignment="center" id="o20-X9-IY5">
-                            <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
-                        </label>
+                        <group width="1" height="1" alignment="left" layout="vertical" id="Sw0-g4-57a">
+                            <items>
+                                <label alignment="center" text="Description" textAlignment="left" numberOfLines="3" id="k2a-TT-WNK">
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="10"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="8"/>
+                                    </variation>
+                                </label>
+                                <label alignment="center" verticalAlignment="center" text="UV Index" textAlignment="center" id="o20-X9-IY5">
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="boldSystem" pointSize="100"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="boldSystem" pointSize="80"/>
+                                    </variation>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="10" right="10" top="10" bottom="10"/>
+                        </group>
                     </items>
                     <menu key="menu" id="KLJ-cg-wY0">
                         <items>
@@ -28,10 +46,12 @@
                             </menuItem>
                         </items>
                     </menu>
+                    <edgeInsets key="margins" left="5" right="6" top="5" bottom="5"/>
                     <connections>
                         <outlet property="errorMessageLabel" destination="IcJ-WG-sdT" id="SQQ-uN-DXd"/>
                         <outlet property="uvIndexDescriptionLabel" destination="k2a-TT-WNK" id="1Fj-7l-8uq"/>
                         <outlet property="uvIndexLabel" destination="o20-X9-IY5" id="gu4-PA-TE4"/>
+                        <outlet property="uxIndexGroup" destination="Sw0-g4-57a" id="NMO-G4-7Pn"/>
                     </connections>
                 </controller>
             </objects>

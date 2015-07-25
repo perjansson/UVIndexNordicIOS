@@ -18,7 +18,7 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     let dateFormatter = NSDateFormatter()
     
     var delegate : ViewController?
-    var handler : ((uvIndex : UvIndex) -> Void)?
+    var handler : ((uvIndex : UvIndex?, error : NSError?) -> Void)?
     
     var currentLocation : CLLocation?
     var forecasts : [Forecast] = []
@@ -35,7 +35,7 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
         self.initForecastRetriever()
     }
     
-    init(handler : (uvIndex : UvIndex) -> Void) {
+    init(handler : (uvIndex : UvIndex?, error : NSError?) -> Void) {
         super.init()
         self.handler = handler
         self.initForecastRetriever()
@@ -109,7 +109,15 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
                         self.latitude = closestForecast.latitude
                         self.longitude = closestForecast.longitude
                     } else {
-                        self.delegate!.didNotFindValidCountry(placeMark.country)
+                        if self.handler != nil {
+                            var userInfo = Dictionary<String, String>()
+                            userInfo[NSLocalizedDescriptionKey] = "Oh no :( This app cannot find UV Index outside the Nordic countries, and you are in \(placeMark.country)"
+                            var error = NSError(domain: "forecast_retriever", code: 1, userInfo: userInfo)
+                            self.handler!(uvIndex: nil, error: error)
+                        }
+                        if self.delegate != nil {
+                            self.delegate!.didNotFindValidCountry(placeMark.country)
+                        }
                         return
                     }
                 }
@@ -124,13 +132,21 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     func returnResultToDelegate() {
         if hasUVIndex() && hasCity() {
             if self.handler != nil {
-                handler!(uvIndex: UvIndex(uvIndex: self.uvIndex!, city: self.city!, longitude: self.longitude!, latitude: self.latitude!))
+                handler!(uvIndex: UvIndex(uvIndex: self.uvIndex!, city: self.city!, longitude: self.longitude!, latitude: self.latitude!), error: nil)
             }
             if self.delegate != nil {
                 self.delegate!.didReceiveUVIndexForLocationAndTime(self.uvIndex! as String, city: self.city! as String, timeStamp: NSDate())
             }
         } else {
-            self.delegate!.didNotReceivedUvIndexOrCity()
+            if self.handler != nil {
+                var userInfo = Dictionary<String, String>()
+                userInfo[NSLocalizedDescriptionKey] = "Oh no :( Could for some reason not find any UV Index for your location. Make sure you have internet access, that this app has access to your location and then touch anywhere on the screen to try again."
+                var error = NSError(domain: "forecast_retriever", code: 1, userInfo: userInfo)
+                self.handler!(uvIndex: nil, error: error)
+            }
+            if self.delegate != nil {
+                self.delegate!.didNotReceivedUvIndexOrCity()
+            }
         }
     }
     

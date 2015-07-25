@@ -32,7 +32,7 @@ class UvIndex {
         self.latitude = dictionary["latitude"] as? Double
     }
     
-    func getBackgroundColorForUVIndex() -> UIColor {
+    func getColorForUVIndex() -> UIColor {
         switch self.uvIndex {
         case "":
             return UIColor.lightGrayColor()

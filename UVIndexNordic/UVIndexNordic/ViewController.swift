@@ -85,7 +85,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         uvIndexDescriptionLabel.textColor = UIColor.blackColor()
         uvIndexLabel.textColor = UIColor.blackColor()
         uvIndexLabel.text = uvIndex.uvIndex
-        self.view.backgroundColor = uvIndex.getBackgroundColorForUVIndex()
+        self.view.backgroundColor = uvIndex.getColorForUVIndex()
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

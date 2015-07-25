@@ -54,12 +54,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var locationManager = CLLocationManager()
         var location = locationManager.location
         //ForecastRetriever(reply: reply).getUVIndex(location)
-        var forecastRetriever = ForecastRetriever() { (uvIndex : UvIndex) in
+        var forecastRetriever = ForecastRetriever() { (uvIndex : UvIndex?, error : NSError?) in
             var uvIndexDictionary = Dictionary<String, String>()
-            uvIndexDictionary["city"] = uvIndex.city
-            uvIndexDictionary["uvIndex"] = uvIndex.uvIndex
-            uvIndexDictionary["longitude"] = "\(uvIndex.longitude)"
-            uvIndexDictionary["latitude"] = "\(uvIndex.latitude)"
+            if uvIndex != nil {
+                uvIndexDictionary["city"] = uvIndex!.city
+                uvIndexDictionary["uvIndex"] = uvIndex!.uvIndex
+                uvIndexDictionary["longitude"] = "\(uvIndex!.longitude)"
+                uvIndexDictionary["latitude"] = "\(uvIndex!.latitude)"
+            }
+            if error != nil {
+                uvIndexDictionary["error"] = error!.localizedDescription
+            }
             reply!(uvIndexDictionary as [NSObject : AnyObject])
         }
         forecastRetriever.getUVIndex(location)
