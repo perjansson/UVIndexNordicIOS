@@ -29,14 +29,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         getTheStuff()
     }
     
-    func getTheStuffForWatchKitExtension() -> NSDictionary {
-        var uvIndexDictionary = Dictionary<String, String>()
-        uvIndexDictionary["city"] = "Karlstad"
-        uvIndexDictionary["uvIndexDescription"] = "High"
-        uvIndexDictionary["uvIndex"] = "8"
-        return uvIndexDictionary
-    }
-    
     func getTheStuff() {
         if indicator != nil {
             indicator.dismissIndicator()
@@ -68,7 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func getUVIndex(currentLocation : CLLocation) {
-        ForecastRetriever(delegate: self).getUVIndex(currentLocation, delegate: self)
+        ForecastRetriever(delegate: self).getUVIndex(currentLocation)
     }
     
     func didNotFindValidCountry(country : NSString) {
@@ -85,55 +77,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func didReceiveUVIndexForLocationAndTime(uvIndex: String, city: String, timeStamp: NSDate) {
         indicator.dismissIndicator()
-        infoLabel.text = buildInfoText(city, timeStamp: timeStamp) as String
-        uvIndexDescriptionLabel.text = buildDescriptionForUVIndex(uvIndex) as String
+        
+        var uvIndex = UvIndex(uvIndex: uvIndex, city: city, longitude: nil, latitude: nil)
+        infoLabel.text = uvIndex.getInfoText()
+        uvIndexDescriptionLabel.text = uvIndex.getUvIndexDescription()
         infoLabel.textColor = UIColor.blackColor()
         uvIndexDescriptionLabel.textColor = UIColor.blackColor()
         uvIndexLabel.textColor = UIColor.blackColor()
-        uvIndexLabel.text = uvIndex
-        self.view.backgroundColor = getBackgroundColorForUVIndex(uvIndex)
-    }
-    
-    func buildInfoText(city: String, timeStamp: NSDate) -> NSString {
-        return "UV Index in " + city + " at " + dateFormatter.stringFromDate(timeStamp)
-    }
-    
-    func buildDescriptionForUVIndex(uvIndex: String) -> NSString {
-        return "is " + (getDescriptionForUVIndex(uvIndex) as String)
-    }
-    
-    func getDescriptionForUVIndex(uvIndex: String) -> NSString {
-        switch uvIndex {
-        case "":
-            return "UNKNOWN :("
-        case "0", "1", "2":
-            return "LOW"
-        case "3", "4", "5":
-            return "MODERATE"
-        case "6", "7":
-            return "HIGH"
-        case "8", "9", "10":
-            return "VERY HIGH"
-        default:
-            return "EXTREME"
-        }
-    }
-    
-    func getBackgroundColorForUVIndex(uvIndex: String) -> UIColor {
-        switch uvIndex {
-        case "":
-            return UIColor.lightGrayColor()
-        case "0", "1", "2":
-            return UIColor(red: 0.459, green: 0.757, blue: 0.282, alpha: 1.0)
-        case "3", "4", "5":
-            return UIColor(red: 0.918, green: 0.925, blue: 0.4, alpha: 1.0)
-        case "6", "7":
-            return UIColor(red: 0.886, green: 0.455, blue: 0.184, alpha: 1.0)
-        case "8", "9", "10":
-            return UIColor(red: 0.886, green: 0.204, blue: 0.184, alpha: 1.0)
-        default:
-            return UIColor(red: 0.6, green: 0.125, blue: 0.561, alpha: 1.0)
-        }
+        uvIndexLabel.text = uvIndex.uvIndex
+        self.view.backgroundColor = uvIndex.getBackgroundColorForUVIndex()
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

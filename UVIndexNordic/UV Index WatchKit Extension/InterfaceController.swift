@@ -12,14 +12,17 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
-    @IBOutlet weak var cityLabel: WKInterfaceLabel!
     @IBOutlet weak var uvIndexDescriptionLabel: WKInterfaceLabel!
     @IBOutlet weak var uvIndexLabel: WKInterfaceLabel!
+    @IBOutlet weak var errorMessageLabel: WKInterfaceLabel!
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         // Configure interface objects here.
+        self.showHideUvIndex(true)
+        self.showHideErrorMessage(true)
+        
         self.requestUVIndexFromPhone()
     }
 
@@ -38,26 +41,44 @@ class InterfaceController: WKInterfaceController {
     }
     
     func requestUVIndexFromPhone() {
+        println("### requestUVIndexFromPhone")
+        
         WKInterfaceController.openParentApplication(Dictionary<String, String>()) {
             (replyInfo, error) -> Void in
             
             if error == nil {
-                println("### requestUVIndexFromPhone \(replyInfo)")
-                var dictionary = replyInfo as NSDictionary
-                let city = dictionary["city"] as! String
-                let uvIndexDescription = dictionary["uvIndexDescription"] as! String
-                let uvIndex = dictionary["uvIndex"] as! String
+                println("### Got reply \(replyInfo)")
+                let uvIndex = UvIndex(dictionary: replyInfo as NSDictionary)
                 
-                self.cityLabel.setText(city)
-                self.uvIndexDescriptionLabel.setText(uvIndexDescription)
-                self.uvIndexLabel.setText(uvIndex)
+                let uvIndexDescription = NSMutableAttributedString(string: "\(uvIndex.getInfoText()) \(uvIndex.getUvIndexDescription())", attributes: [NSFontAttributeName : UIFont.systemFontOfSize(10)])
+                uvIndexDescription.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: NSRange(location: 0, length: uvIndexDescription.length))
+                self.uvIndexDescriptionLabel.setAttributedText(uvIndexDescription)
+
+                let uvIndexText = NSMutableAttributedString(string: uvIndex.uvIndex, attributes: [NSFontAttributeName : UIFont.systemFontOfSize(90)])
+                uvIndexText.addAttribute(NSForegroundColorAttributeName, value: uvIndex.getBackgroundColorForUVIndex(), range: NSRange(location: 0, length: (uvIndex.uvIndex as NSString).length))
+                self.uvIndexLabel.setAttributedText(uvIndexText)
+                
+                self.showHideUvIndex(false)
                 
             } else {
                 // TODO: Show error
                 println("### Error: \(error)")
+                var font = UIFont.systemFontOfSize(6)
+                var specialString = NSAttributedString(string: "Whoops:\n \(error)" as String, attributes: [NSFontAttributeName:font])
+                self.errorMessageLabel.setAttributedText(specialString)
+                self.showHideErrorMessage(false)
             }
 
         }
+    }
+    
+    func showHideUvIndex(hidden : Bool) {
+        uvIndexDescriptionLabel.setHidden(hidden)
+        uvIndexLabel.setHidden(hidden)
+    }
+    
+    func showHideErrorMessage(hidden : Bool) {
+        errorMessageLabel.setHidden(hidden)
     }
 
 }

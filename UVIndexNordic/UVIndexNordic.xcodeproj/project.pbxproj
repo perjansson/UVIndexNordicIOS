@@ -16,6 +16,8 @@
 		2E0403C81A336952006DCA68 /* ForecastRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0403C71A336952006DCA68 /* ForecastRetriever.swift */; };
 		2E0403CC1A3377CD006DCA68 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0403CB1A3377CD006DCA68 /* Forecast.swift */; };
 		2E0403CE1A33A1D7006DCA68 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0403CD1A33A1D7006DCA68 /* CoreLocation.framework */; };
+		2E4B09251B5ED1AF0074A1C1 /* UvIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4B09241B5ED1AF0074A1C1 /* UvIndex.swift */; };
+		2E4B09261B5ED1AF0074A1C1 /* UvIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4B09241B5ED1AF0074A1C1 /* UvIndex.swift */; };
 		2E7DF4F81A33A98F002EEAAE /* SDevIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DF4F71A33A98F002EEAAE /* SDevIndicator.swift */; };
 		2ED1DC351B5BAE72006B5515 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1DC341B5BAE72006B5515 /* InterfaceController.swift */; };
 		2ED1DC371B5BAE72006B5515 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1DC361B5BAE72006B5515 /* NotificationController.swift */; };
@@ -79,6 +81,7 @@
 		2E0403C71A336952006DCA68 /* ForecastRetriever.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastRetriever.swift; sourceTree = "<group>"; };
 		2E0403CB1A3377CD006DCA68 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		2E0403CD1A33A1D7006DCA68 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2E4B09241B5ED1AF0074A1C1 /* UvIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UvIndex.swift; sourceTree = "<group>"; };
 		2E7DF4F71A33A98F002EEAAE /* SDevIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDevIndicator.swift; sourceTree = "<group>"; };
 		2ED1DC2F1B5BAE72006B5515 /* UV Index WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "UV Index WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED1DC321B5BAE72006B5515 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -150,6 +153,7 @@
 				2E0403C71A336952006DCA68 /* ForecastRetriever.swift */,
 				2E7DF4F71A33A98F002EEAAE /* SDevIndicator.swift */,
 				2E0403CB1A3377CD006DCA68 /* Forecast.swift */,
+				2E4B09241B5ED1AF0074A1C1 /* UvIndex.swift */,
 				2E0403AB1A333851006DCA68 /* Main.storyboard */,
 				2E0403AE1A333851006DCA68 /* Images.xcassets */,
 				2E0403B01A333851006DCA68 /* LaunchScreen.xib */,
@@ -386,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E0403C81A336952006DCA68 /* ForecastRetriever.swift in Sources */,
+				2E4B09251B5ED1AF0074A1C1 /* UvIndex.swift in Sources */,
 				2E0403AA1A333851006DCA68 /* ViewController.swift in Sources */,
 				2E7DF4F81A33A98F002EEAAE /* SDevIndicator.swift in Sources */,
 				2E0403A81A333851006DCA68 /* AppDelegate.swift in Sources */,
@@ -408,6 +413,7 @@
 				2ED1DC371B5BAE72006B5515 /* NotificationController.swift in Sources */,
 				2ED1DC351B5BAE72006B5515 /* InterfaceController.swift in Sources */,
 				2ED1DC391B5BAE72006B5515 /* GlanceController.swift in Sources */,
+				2E4B09261B5ED1AF0074A1C1 /* UvIndex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

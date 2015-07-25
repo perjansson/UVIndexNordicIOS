@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -44,15 +45,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
         println("### handleWatchKitExtensionRequest 2")
         
+        // TODO: Return error message to reply
         let backgroundTaskIdentifier =
-        application.beginBackgroundTaskWithName("watchKitExtensionRequest",
-                expirationHandler: { () -> Void in reply([:])
-            })
+        application.beginBackgroundTaskWithName("watchKitExtensionRequest", expirationHandler: {
+            () -> Void in reply([:])
+        })
         
-        var uvIndexDictionary = ViewController().getTheStuffForWatchKitExtension()
-        //var uvIndexDictionary = ForecastRetriever().getUVIndexAndReplyToWatchKitExtension()
+        var locationManager = CLLocationManager()
+        var location = locationManager.location
+        //ForecastRetriever(reply: reply).getUVIndex(location)
+        var forecastRetriever = ForecastRetriever() { (uvIndex : UvIndex) in
+            var uvIndexDictionary = Dictionary<String, String>()
+            uvIndexDictionary["city"] = uvIndex.city
+            uvIndexDictionary["uvIndex"] = uvIndex.uvIndex
+            uvIndexDictionary["longitude"] = "\(uvIndex.longitude)"
+            uvIndexDictionary["latitude"] = "\(uvIndex.latitude)"
+            reply!(uvIndexDictionary as [NSObject : AnyObject])
+        }
+        forecastRetriever.getUVIndex(location)
         
-        reply(uvIndexDictionary as [NSObject : AnyObject])
+        // TODO: Return error message to reply if location or uv index could not be found
         
         application.endBackgroundTask(backgroundTaskIdentifier)
     }

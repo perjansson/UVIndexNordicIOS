@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 class ForecastRetriever : NSObject, NSXMLParserDelegate {
     
@@ -17,37 +18,36 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     let dateFormatter = NSDateFormatter()
     
     var delegate : ViewController?
+    var handler : ((uvIndex : UvIndex) -> Void)?
     
     var currentLocation : CLLocation?
     var forecasts : [Forecast] = []
     var currentParsingForecast : Forecast?
     
-    var uvIndex : NSString?
-    var city : NSString?
+    var uvIndex : String?
+    var city : String?
+    var latitude : Double?
+    var longitude : Double?
     
-    override init() {
+    init(delegate : ViewController) {
         super.init()
+        self.delegate = delegate
+        self.initForecastRetriever()
     }
     
-    init(delegate:ViewController) {
+    init(handler : (uvIndex : UvIndex) -> Void) {
+        super.init()
+        self.handler = handler
+        self.initForecastRetriever()
+    }
+    
+    func initForecastRetriever() {
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        self.delegate = delegate
         self.uvIndex = ""
         self.city = ""
-        
-        super.init()
     }
     
-    func getUVIndexAndReplyToWatchKitExtension() -> NSDictionary {
-        var uvIndexDictionary = Dictionary<String, String>()
-        uvIndexDictionary["city"] = "Rauma"
-        uvIndexDictionary["uvIndexDescription"] = "High"
-        uvIndexDictionary["uvIndex"] = "8"
-        return uvIndexDictionary
-    }
-    
-    func getUVIndex(currentLocation : CLLocation, delegate : ViewController) {
+    func getUVIndex(currentLocation : CLLocation) {
         self.currentLocation = currentLocation
         var url = NSURL(string : String(format: FORECAST_PROVIDER_URL, dateFormatter.stringFromDate(NSDate())))
         var xmlParser = NSXMLParser(contentsOfURL: url)
@@ -106,6 +106,8 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
                     if self.isValidCountry(placeMark.ISOcountryCode) {
                         self.city = placeMark.locality
                         self.uvIndex = closestForecast.uvIndex!
+                        self.latitude = closestForecast.latitude
+                        self.longitude = closestForecast.longitude
                     } else {
                         self.delegate!.didNotFindValidCountry(placeMark.country)
                         return
@@ -121,7 +123,12 @@ class ForecastRetriever : NSObject, NSXMLParserDelegate {
     
     func returnResultToDelegate() {
         if hasUVIndex() && hasCity() {
-            self.delegate!.didReceiveUVIndexForLocationAndTime(self.uvIndex! as String, city: self.city! as String, timeStamp: NSDate())
+            if self.handler != nil {
+                handler!(uvIndex: UvIndex(uvIndex: self.uvIndex!, city: self.city!, longitude: self.longitude!, latitude: self.latitude!))
+            }
+            if self.delegate != nil {
+                self.delegate!.didReceiveUVIndexForLocationAndTime(self.uvIndex! as String, city: self.city! as String, timeStamp: NSDate())
+            }
         } else {
             self.delegate!.didNotReceivedUvIndexOrCity()
         }
