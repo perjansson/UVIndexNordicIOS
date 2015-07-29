@@ -11,20 +11,21 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceController {
-
+    
+    @IBOutlet weak var errorMessageLabel: WKInterfaceLabel!
+    
     @IBOutlet weak var uxIndexGroup: WKInterfaceGroup!
     @IBOutlet weak var uvIndexDescriptionLabel: WKInterfaceLabel!
     @IBOutlet weak var uvIndexLabel: WKInterfaceLabel!
     
-    @IBOutlet weak var errorMessageLabel: WKInterfaceLabel!
+    @IBOutlet weak var loadingGroup: WKInterfaceGroup!
+    @IBOutlet weak var spinnerImage: WKInterfaceImage!
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         // Configure interface objects here.
-        self.uxIndexGroup.setHidden(true)
-        self.errorMessageLabel.setHidden(true)
-        
+        self.hideUIWhileLoadingUVIndex()
         self.requestUVIndexFromPhone()
     }
 
@@ -45,10 +46,14 @@ class InterfaceController: WKInterfaceController {
     func requestUVIndexFromPhone() {
         println("### Requesting uv index")
         
+        self.hideUIWhileLoadingUVIndex()
+        
         WKInterfaceController.openParentApplication(Dictionary<String, String>()) {
             (replyInfo, error) -> Void in
             
             println("### Got reply \(replyInfo) and error \(error)")
+            
+            self.loadingGroup.setHidden(true)
             if error == nil {
                 if (replyInfo["error"] == nil) {
                     self.showUvIndex(replyInfo as! Dictionary<String, String>)
@@ -73,9 +78,16 @@ class InterfaceController: WKInterfaceController {
     }
     
     func showError(error : AnyObject) {
-        var font = UIFont.systemFontOfSize(6)
-        self.errorMessageLabel.setAttributedText(NSAttributedString(string: "\(error)\n\n Make sure you have internet access, that this app has access to your location and then press hard anywhere on the screen to try again." as String, attributes: [NSFontAttributeName:font]))
+        self.errorMessageLabel.setText("\(error.localizedDescription)\n\nIf you get this error try and start UV Index on your phone. Make sure you have internet access, that this app has access to your location and then press hard anywhere on the screen to try again.")
         self.uxIndexGroup.setHidden(true)
-        self.errorMessageLabel.setHidden(false)    }
+        self.errorMessageLabel.setHidden(false)
+    }
+    
+    func hideUIWhileLoadingUVIndex() {
+        self.loadingGroup.setHidden(false)
+        spinnerImage.startAnimatingWithImagesInRange(NSMakeRange(1, 42), duration: 1.10, repeatCount: 100)
+        self.uxIndexGroup.setHidden(true)
+        self.errorMessageLabel.setHidden(true)
+    }
 
 }

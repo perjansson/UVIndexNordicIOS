@@ -10,11 +10,23 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="UV_Index_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <label alignment="center" text="Error message" textAlignment="left" numberOfLines="20" id="IcJ-WG-sdT">
+                        <group alignment="center" verticalAlignment="center" layout="vertical" id="yyR-hD-Pnc">
+                            <items>
+                                <imageView alignment="center" verticalAlignment="center" image="spinner" id="bxK-sX-8XY"/>
+                                <label alignment="center" verticalAlignment="center" text="Loading UV Index" textAlignment="center" id="2PD-tY-95J">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="10"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="8"/>
+                                    </variation>
+                                </label>
+                            </items>
+                        </group>
+                        <label alignment="center" text="Message" textAlignment="left" numberOfLines="20" id="IcJ-WG-sdT">
                             <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" type="system" pointSize="11"/>
+                            <fontDescription key="font" type="system" pointSize="8"/>
                             <variation key="device=watch38mm">
-                                <fontDescription key="font" type="system" pointSize="9"/>
+                                <fontDescription key="font" type="system" pointSize="6"/>
                             </variation>
                         </label>
                         <group width="1" height="1" alignment="left" layout="vertical" id="Sw0-g4-57a">
@@ -49,6 +61,8 @@
                     <edgeInsets key="margins" left="5" right="6" top="5" bottom="5"/>
                     <connections>
                         <outlet property="errorMessageLabel" destination="IcJ-WG-sdT" id="SQQ-uN-DXd"/>
+                        <outlet property="loadingGroup" destination="yyR-hD-Pnc" id="xKP-DB-1Fi"/>
+                        <outlet property="spinnerImage" destination="bxK-sX-8XY" id="Zx6-Hg-rde"/>
                         <outlet property="uvIndexDescriptionLabel" destination="k2a-TT-WNK" id="1Fj-7l-8uq"/>
                         <outlet property="uvIndexLabel" destination="o20-X9-IY5" id="gu4-PA-TE4"/>
                         <outlet property="uxIndexGroup" destination="Sw0-g4-57a" id="NMO-G4-7Pn"/>
